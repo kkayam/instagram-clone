@@ -1,0 +1,69 @@
+html, body, #root, .class {
+    height: 100%;
+    background-color: rgba(var(--b3f,250,250,250),1);
+}
+
+div.vspace {
+    height: 100%+200px;
+    width: 100%;
+    background-color: aqua;
+  }  
+
+div.content {
+    margin-top: 60px;
+    width: 100%;
+    padding: 10px 25% 10px 25%;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+div.imagefeed {
+    float: left;
+    width: 65%;
+    background-color: rgba(var(--b3f,250,250,250),1);
+    height: 100%;
+    padding-bottom: 200px;
+}
+
+div.contentside {
+    height: 100%;
+    width: 35%;
+    float: right;
+}
+
+div.contentside-inner {
+    position: fixed;
+    padding: 20px;
+    background-color: white;
+    width: 300px;
+}
+
+div.post {
+    background-color:white;
+    min-height: 600px;
+    border: 1px solid rgba(var(--b6a,219,219,219),1);
+    margin-bottom: 30px;
+}
+
+div.postheader {
+    text-align: left;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: white;
+    width: 100%;
+    height: 50px;
+}
+
+div.post>img {
+    width: 100%;
+}
+
+
+div.comments {
+    padding: 15px;
+}
+
+div.comment {
+    text-align: left;
+    margin-bottom: 5px;
+}
