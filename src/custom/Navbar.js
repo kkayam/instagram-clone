@@ -5,6 +5,8 @@ import heart from "../resources/heart.PNG";
 import messages from "../resources/messages.PNG";
 import home from "../resources/home.PNG";
 
+import {Link} from "react-router-dom";
+
 function Navbar(props){
     return (
     <div class="navbar">
@@ -13,9 +15,10 @@ function Navbar(props){
         </span>
         <input class="search" placeholder="Search"></input>
         <span class="buttons">
-            <img alt="" src={home}></img>
-            <img alt="" src={messages}></img>
-            <img alt="" src={explore}></img>
+            <button onClick={props.signout}>Sign out</button>
+        <Link to="/"><img alt="" src={home}></img></Link>
+        <Link to="/messages"><img alt="" src={messages}></img></Link>
+        <Link to="/explore"><img alt="" src={explore}></img></Link>
             <img alt="" src={heart}></img>
             <img alt="" src={profile}></img>
         </span>
