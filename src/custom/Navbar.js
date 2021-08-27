@@ -8,14 +8,43 @@ import home from "../resources/home.PNG";
 import {Link} from "react-router-dom";
 
 function Navbar(props){
+    
+  function signout(){
+    props.firebase.auth().signOut().then(() => {})
+  }
+
+    function uploadImage(e){
+        var posts_db = props.firebase.firestore().collection('posts');
+        var post = {
+            UID:props.firebase.auth().currentUser.uid,
+            description: "absbsabs",
+            time: Date.now()
+        }
+
+        posts_db.add(post).then((post) =>{
+            var storageRef = props.firebase.storage().ref("posts/"+post.id+".jpg");
+            var file = e.target.files[0];
+            storageRef.put(file);
+        }
+        );
+
+    }
+
+    function searchUser(e){
+        if(e.key === 'Enter') {
+            window.location = e.target.value;
+        }
+    }
+
     return (
     <div class="navbar">
         <span class="logo">
-            Instagram
+            <Link to="/">Instagram</Link>
         </span>
-        <input class="search" placeholder="Search"></input>
+        <input class="search" onKeyDown={searchUser} placeholder="Search"></input>
         <span class="buttons">
-            <button onClick={props.signout}>Sign out</button>
+            <input type="file" accept="image/*" onChange={uploadImage}></input>
+            <button onClick={signout}>Sign out</button>
         <Link to="/"><img alt="" src={home}></img></Link>
         <Link to="/messages"><img alt="" src={messages}></img></Link>
         <Link to="/explore"><img alt="" src={explore}></img></Link>

@@ -16,6 +16,10 @@
     font-size: 18pt;
 }
 
+.logo>a {
+    text-decoration: none;
+}
+
 .buttons {
     float:right;
 }

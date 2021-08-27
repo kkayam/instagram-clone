@@ -1,0 +1,11 @@
+div.profilecontent {
+    margin-top: 60px;
+    width: 100%;
+    padding: 10px 25% 10px 25%;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+h2.profilename {
+    font-weight: 300;
+}

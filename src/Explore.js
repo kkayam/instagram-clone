@@ -1,7 +1,7 @@
 import './App.css';
 import Navbar from './custom/Navbar';
 
-function Explore() {
+function Explore(props) {
   return (
     <div className="App">
       <Navbar/>
