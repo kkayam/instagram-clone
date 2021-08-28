@@ -7,14 +7,22 @@ function Signup(props) {
   function createButton(){
     let email = document.getElementById('email-input').value;
     let name = document.getElementById('name-input').value;
-    let username = document.getElementById('username-input').value;
+    let username = document.getElementById('username-input').value.toLowerCase();
     let password = document.getElementById('password-input').value;
-    props.firebase.auth().setPersistence(props.firebase.auth.Auth.Persistence.LOCAL).then(
-      ()=>
+    let user_db = props.firebase.firestore().collection('users');
+
+
+    props.firebase.auth().setPersistence(props.firebase.auth.Auth.Persistence.LOCAL).then(()=>
       {props.firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
-      // props.firebase.
-      window.location.href = "/";
+      user_db.doc(userCredential.user.uid).set({
+        followers:[],
+        follows:[userCredential.user.uid],
+        name:name,
+        username:username
+      }).then(() => {
+        window.location.href = "/";
+      })
     });}
     )
   }

@@ -37,9 +37,9 @@ function Navbar(props){
     }
 
     return (
-    <div class="navbar">
-        <span class="logo">
-            <Link to="/">Instagram</Link>
+    <div className="navbar">
+        <span className="logo">
+            <Link to="/">Buggygram</Link>
         </span>
         <input class="search" onKeyDown={searchUser} placeholder="Search"></input>
         <span class="buttons">

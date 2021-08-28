@@ -5,10 +5,14 @@ export default function Post(props) {
     return (
         <div class="post">
             <div class="postheader">
-                911.police
+                Some user, har inte pallat fixa än lol
             </div>
             <img alt={props.description} src={props.img_src}></img>
-            <PostComments/>
+            
+            <div class="comment">
+                description not done yet
+            </div>
+            {/* <PostComments/> */}
         </div>
     )
 }

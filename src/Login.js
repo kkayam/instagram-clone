@@ -24,7 +24,7 @@ function Login(props) {
         <div class="loginandreg">
         <div class="logincontainer">
           <div class="logo">
-            Koraystagram
+            Buggygram
           </div>
           <div class="form">
             <input id="email-input" placeholder="Email"></input>

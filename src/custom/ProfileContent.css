@@ -4,6 +4,9 @@ div.profilecontent {
     padding: 10px 25% 10px 25%;
     box-sizing: border-box;
     height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 h2.profilename {
