@@ -52,7 +52,7 @@ export default function ImageFeed(props){
 
             }
         })
-      }, []);
+      }, [props.firebase]);
 
     return (
         <div class="imagefeed">

@@ -1,17 +1,17 @@
 
 export default function PostComments(props){
     return (
-        <div class="comments">
-            <div class="comment">
+        <div className="comments">
+            <div className="comment">
                 hello
             </div>
-            <div class="comment">
+            <div className="comment">
                 hello
             </div>
-            <div class="comment">
+            <div className="comment">
                 hello
             </div>
-            <div class="comment">
+            <div className="comment">
                 hello
             </div>
         </div>

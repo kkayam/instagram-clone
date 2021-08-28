@@ -21,19 +21,19 @@ function Login(props) {
   return (
     <div className="loginscreen">
         <img alt="" src={login_png}></img>
-        <div class="loginandreg">
-        <div class="logincontainer">
-          <div class="logo">
+        <div className="loginandreg">
+        <div className="logincontainer">
+          <div className="logo">
             Buggygram
           </div>
-          <div class="form">
+          <div className="form">
             <input id="email-input" placeholder="Email"></input>
             <input type="password" id="password-input" placeholder="Password"></input>
             <button onClick={LoginButton}>Logga in</button>
           </div>
         </div>
-        <div class="registercontainer">
-            Har du inget konto?<a class="inline" href="/signup">Registrera dig</a>
+        <div className="registercontainer">
+            Har du inget konto?<a className="inline" href="/signup">Registrera dig</a>
         </div>
         </div>
     </div>

@@ -48,10 +48,10 @@ export default function ProfileFeed(props){
                 })
             });   
         }
-      }, [props.profile]);
+      }, [props.profile,props.firebase]);
 
     return (
-        <div class="imagefeed">
+        <div className="imagefeed">
             {posts.map((post) => {
                 return <Post post={post}/>
             })}

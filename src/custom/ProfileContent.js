@@ -17,7 +17,7 @@ export default function ProfileContent(props) {
 
     }
     return (
-        <div class="profilecontent">
+        <div className="profilecontent">
             <h2 className="profilename">
                 {props.profile.name}
             </h2>

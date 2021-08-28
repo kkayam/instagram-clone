@@ -17,7 +17,7 @@ export default function Profile(props) {
             profile_new["uid"] = profile.docs[0].id;
             setProfile(profile_new);
         });
-    },[]);
+    },[location.pathname,props.firebase]);
 
     return (
         <div className="App">

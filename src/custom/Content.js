@@ -5,7 +5,7 @@ import ContentSide from "./ContentSide"
 
 function Content(props) {
     return (
-        <div class="content">
+        <div className="content">
             <ImageFeed firebase={props.firebase}/>
             <ContentSide/>
         </div>

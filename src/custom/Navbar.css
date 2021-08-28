@@ -9,10 +9,17 @@
     padding: 10px 25% 10px 25%;
     box-sizing: border-box;
     z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
+input[type="file"] {
+    display: none;
+}
+
+
 .logo {
-    float:left;
     font-size: 18pt;
 }
 
@@ -21,11 +28,15 @@
 }
 
 .buttons {
-    float:right;
+    width: 32%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.buttons>Link {
-    margin-left: 20px;
+.buttons>a>img, .file-upload>img {
+    max-width: 30px;
+    cursor:pointer;
 }
 
 input.search {

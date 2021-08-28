@@ -29,12 +29,12 @@ function Signup(props) {
   
   return (
     <div className="loginscreen">
-      <div class="loginandreg">
-        <div class="logincontainer">
-          <div class="logo">
+      <div className="loginandreg">
+        <div className="logincontainer">
+          <div className="logo">
             Koraystagram
           </div>
-          <div class="form">
+          <div className="form">
             <input id="email-input" placeholder="Email"></input>
             <input id="name-input" placeholder="Name"></input>
             <input id="username-input" placeholder="Username"></input>
@@ -42,8 +42,8 @@ function Signup(props) {
             <button onClick={createButton}>Gå med</button>
           </div>
         </div>
-        <div class="registercontainer">
-            Har du ett konto?<a class="inline" href="/">Logga in</a>
+        <div className="registercontainer">
+            Har du ett konto?<a className="inline" href="/">Logga in</a>
         </div>
         </div>
     </div>
