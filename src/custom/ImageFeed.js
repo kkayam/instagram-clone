@@ -9,6 +9,7 @@ export default function ImageFeed(props){
     useEffect(() => {
         var uid = props.firebase.auth().currentUser.uid;
         var posts_db = props.firebase.firestore().collection('posts');
+        var users_db = props.firebase.firestore().collection('users');
         var userDocRef = props.firebase.firestore().collection('users').doc(uid);
         var storage = props.firebase.storage();
 
@@ -18,19 +19,34 @@ export default function ImageFeed(props){
                 posts_db.where("UID", "in", follows).orderBy("time", "desc")
                 .limit(10).get()
                 .then((posts) => {
-                    var new_posts = []
+                    var new_posts = [];
+                    var img_promises = [];
+                    var user_promises = [];
+
                     posts.docs.forEach((doc,index) => {
-                        var imageURL = 'posts/'+doc.id+'.jpg';
+                        var imageURL = 'posts/'+doc.id+doc.data().type;
                         var pathReference = storage.ref(imageURL);
-                        pathReference.getDownloadURL().then((url) => {
+                        var user_promise = users_db.doc(doc.data().UID).get();
+    
+                        user_promises.push(user_promise);
+                        var img_promise = pathReference.getDownloadURL()
+
+                        img_promises.push(img_promise);
+                    });
+                    Promise.all(user_promises).then((responses) => {
+                        responses.forEach((doc,index) => {
                             new_posts.push({
-                                img_src:url,
-                                description:doc.data().description
-                            })
-                            if (index === posts.docs.length-1){
-                                setPosts(new_posts);
-                            }
+                                username:doc.data().username,
+                                description:posts.docs[index].data().description
+                            });
                         })
+                    });
+
+                    Promise.all(img_promises).then((responses) => {
+                        responses.forEach((url,index) => {
+                            new_posts[index]["img_src"] = url;
+                        })
+                        setPosts(new_posts);
                     });
                 });
 
@@ -41,7 +57,7 @@ export default function ImageFeed(props){
     return (
         <div class="imagefeed">
             {posts.map((post) => {
-                return <Post img_src={post.img_src} description={post.description}/>
+                return <Post post={post}/>
             })}
         </div>
     )

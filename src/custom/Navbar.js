@@ -15,14 +15,17 @@ function Navbar(props){
 
     function uploadImage(e){
         var posts_db = props.firebase.firestore().collection('posts');
+        var type = "."+e.target.value.split('.')[1];
+        
         var post = {
             UID:props.firebase.auth().currentUser.uid,
             description: "absbsabs",
+            type: type,
             time: Date.now()
         }
 
         posts_db.add(post).then((post) =>{
-            var storageRef = props.firebase.storage().ref("posts/"+post.id+".jpg");
+            var storageRef = props.firebase.storage().ref("posts/"+post.id+type);
             var file = e.target.files[0];
             storageRef.put(file);
         }
