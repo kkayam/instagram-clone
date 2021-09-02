@@ -22,7 +22,7 @@ export default function Profile(props) {
     return (
         <div className="App">
         <Navbar firebase={props.firebase}/>
-        <ProfileContent firebase={props.firebase} profile={profile}/>
+        <ProfileContent firebase={props.firebase} user={props.user} profile={profile}/>
         </div>
     );
 }

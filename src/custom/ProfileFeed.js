@@ -5,9 +5,14 @@ import './Content.css'
 
 export default function ProfileFeed(props){
     const [posts, setPosts] = useState([]);
+    const [ignore, setIgnore] = useState(0); // integer state
 
+    function forceUpdate(){
+        setIgnore(value => value + 1); // update the state to force render
+    }
 
     useEffect(() => {
+        var uid = props.firebase.auth().currentUser.uid;
         var posts_db = props.firebase.firestore().collection('posts');
         var users_db = props.firebase.firestore().collection('users');
         var storage = props.firebase.storage();
@@ -21,6 +26,10 @@ export default function ProfileFeed(props){
                 var user_promises = [];
 
                 posts.docs.forEach((doc,index) => {
+                    new_posts.push({
+                        post_id:doc.id,
+                        img_type:doc.data().type
+                    });
                     var imageURL = 'posts/'+doc.id+doc.data().type;
                     var pathReference = storage.ref(imageURL);
                     var img_promise = pathReference.getDownloadURL();
@@ -33,10 +42,15 @@ export default function ProfileFeed(props){
                 
                 Promise.all(user_promises).then((responses) => {
                     responses.forEach((doc,index) => {
-                        new_posts.push({
-                            username:doc.data().username,
-                            description:posts.docs[index].data().description
-                        });
+                        new_posts[index]["username"] = doc.data().username;
+                        new_posts[index]["description"] = posts.docs[index].data().description;
+                        new_posts[index]["comments"] = posts.docs[index].data().comments.sort((a,b) => { return a.time-b.time});
+
+                        if (doc.id === uid){
+                            new_posts[index]["ownership"] = true;
+                        } else {
+                            new_posts[index]["ownership"] = false;
+                        }
                     })
                 })
 
@@ -48,12 +62,12 @@ export default function ProfileFeed(props){
                 })
             });   
         }
-      }, [props.profile,props.firebase]);
+      }, [props.profile,props.firebase,ignore]);
 
     return (
         <div className="imagefeed">
-            {posts.map((post) => {
-                return <Post post={post}/>
+            {posts.map((post,i) => {
+                return <Post key={i} post={post} user={props.user} firebase={props.firebase} rerenderParent={forceUpdate}/>
             })}
         </div>
     )

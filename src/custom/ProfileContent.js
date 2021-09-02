@@ -23,7 +23,7 @@ export default function ProfileContent(props) {
             </h2>
             <button onClick={follow}>Follow</button>
             <br></br>
-            <ProfileFeed firebase={props.firebase} profile={props.profile}/>
+            <ProfileFeed user={props.user} firebase={props.firebase} profile={props.profile}/>
         </div>
     )
 }

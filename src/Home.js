@@ -6,7 +6,7 @@ function Home(props) {
   return (
     <div className="App">
       <Navbar firebase={props.firebase}/>
-      <Content firebase={props.firebase}/>
+      <Content user={props.user} firebase={props.firebase}/>
     </div>
   );
 }

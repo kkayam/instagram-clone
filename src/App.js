@@ -19,14 +19,19 @@ import React from 'react';
 class App extends React.Component {
   constructor(props){
     super(props);
+    var users_db = firebase.firestore().collection('users');
     this.state = {
       user:"loading"
     };
     firebase.auth().onAuthStateChanged((user) => {
-      this.setState({ user: user });
-    });
-
-    
+      users_db.doc(user.uid).get().then((doc) => {
+        var data = doc.data();
+        data["uid"] = user.uid;
+        this.setState({
+          user: data
+        })
+      })
+    });    
   }
 
   checkLogin(destination){
@@ -52,7 +57,7 @@ class App extends React.Component {
         (<Home firebase={firebase} user={this.state.user}/>):<Login firebase={firebase}/>)}
           </Route>
       <Route path="/">
-        {this.checkLogin(<Profile firebase={firebase}/>)}
+        {this.checkLogin(<Profile user={this.state.user} firebase={firebase}/>)}
       </Route>
       </Switch>
     </Router>

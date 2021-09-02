@@ -18,6 +18,11 @@ input[type="file"] {
     display: none;
 }
 
+#profile {
+    width: 35px;
+    cursor: pointer;
+}
+
 
 .logo {
     font-size: 18pt;
@@ -37,6 +42,26 @@ input[type="file"] {
 .buttons>a>img, .file-upload>img {
     max-width: 30px;
     cursor:pointer;
+}
+
+.popup-content {
+    width: 20% !important;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.inner-popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.popup-content>div>button {
+    margin-left: 20px;
 }
 
 input.search {

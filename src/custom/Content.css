@@ -12,6 +12,25 @@ div.content {
     height: 100%;
 }
 
+.username {
+    text-decoration: none;
+    color: black;
+}
+
+.comment-input {
+    width: 100%;
+    border: none;
+    user-select: none;
+    height: 25px;
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px solid rgba(var(--b6a,219,219,219),1);
+}
+
+.comment-input:focus {
+    outline: none;
+}
+
 div.imagefeed {
     float: left;
     width: 65%;
@@ -36,9 +55,15 @@ div.contentside-inner {
 
 div.post {
     background-color:white;
-    min-height: 600px;
+    /* min-height: 600px; */
     border: 1px solid rgba(var(--b6a,219,219,219),1);
     margin-bottom: 30px;
+    border-radius: 3px;
+}
+
+div.postheader>.delete-button {
+    float:right;
+    margin-right: 10px;
 }
 
 div.postheader {
@@ -46,6 +71,8 @@ div.postheader {
     padding: 10px;
     box-sizing: border-box;
     background-color: white;
+    display: flex;
+    justify-content: space-between;
     width: 100%;
     height: 50px;
 }
@@ -54,7 +81,6 @@ div.post>img {
     width: 100%;
 }
 
-
 div.comments {
     padding: 15px;
 }
@@ -62,4 +88,5 @@ div.comments {
 div.comment {
     text-align: left;
     margin-bottom: 5px;
+    margin-left: 10px;
 }
