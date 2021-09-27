@@ -7,7 +7,7 @@ function Content(props) {
     return (
         <div className="content">
             <ImageFeed user={props.user} firebase={props.firebase}/>
-            <ContentSide/>
+            <ContentSide user={props.user}/>
         </div>
     )
 }

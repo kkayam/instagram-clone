@@ -14,7 +14,7 @@ import Signup from './Signup';
 import Profile from './Profile';
 import firebase from "./firebase";
 import React from 'react';
-
+import ScrollToTop from "./custom/ScrollToTop.js"
 
 class App extends React.Component {
   constructor(props){
@@ -23,16 +23,23 @@ class App extends React.Component {
     this.state = {
       user:"loading"
     };
+    
     firebase.auth().onAuthStateChanged((user) => {
-      users_db.doc(user.uid).get().then((doc) => {
-        var data = doc.data();
-        data["uid"] = user.uid;
-        this.setState({
-          user: data
-        })
-      })
+      if (user) {
+        users_db.doc(user.uid).get().then((doc) => {
+          var data = doc.data();
+          data["uid"] = user.uid;
+          this.setState({
+            user: data
+          })
+        })} else {
+          this.setState({
+            user: user
+          })
+        }
     });    
   }
+
 
   checkLogin(destination){
     return (this.state.user==="loading")?<div></div> :((this.state.user) ?
@@ -42,6 +49,7 @@ class App extends React.Component {
 
   render(){
     return <Router>
+      <ScrollToTop/>
       <Switch>
       <Route exact path="/messages">
             {this.checkLogin(<Messages firebase={firebase} user={this.state.user}/>)}

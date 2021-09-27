@@ -24,7 +24,7 @@ export default function PostComments(props){
     }
 
     return (
-        <div className="comments">
+        <div>
             {(props.post.comments) ? props.post.comments.slice(0,5).map((comment)=>{
                 return <div className="comment">
                     <b><Link className="username" to={comment.username}>{comment.username}</Link>{" "}</b>

@@ -43,12 +43,12 @@ export default function ImageFeed(props){
                     });
 
                     Promise.all(user_promises).then((responses) => {
-                        responses.forEach((doc,index) => {
-                            new_posts[index]["username"] = doc.data().username;
-                            new_posts[index]["description"] = posts.docs[index].data().description;
-                            new_posts[index]["comments"] = posts.docs[index].data().comments;
+                        responses.forEach((user_doc,index) => {
+                            var post_data = posts.docs[index].data();
+                            post_data["comments"] = posts.docs[index].data().comments.sort((a,b) => { return a.time-b.time});
+                            new_posts[index] = {...new_posts[index],...user_doc.data(), ...post_data}
 
-                            if (doc.id === uid){
+                            if (user_doc.id === uid){
                                 new_posts[index]["ownership"] = true;
                             } else {
                                 new_posts[index]["ownership"] = false;

@@ -33,7 +33,7 @@ input[type="file"] {
 }
 
 .buttons {
-    width: 32%;
+    width: 27%;
     display: flex;
     align-items: center;
     justify-content: space-between;

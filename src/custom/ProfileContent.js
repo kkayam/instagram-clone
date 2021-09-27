@@ -14,14 +14,14 @@ export default function ProfileContent(props) {
                 userDocRef.set(data).then();
             }
         })
-
+        window.location.reload()
     }
     return (
         <div className="profilecontent">
             <h2 className="profilename">
                 {props.profile.name}
             </h2>
-            <button onClick={follow}>Follow</button>
+            {(props.user.follows.includes(props.profile.uid)) ? <button onClick={follow}>Following</button> : <button onClick={follow}>Follow</button>}
             <br></br>
             <ProfileFeed user={props.user} firebase={props.firebase} profile={props.profile}/>
         </div>
